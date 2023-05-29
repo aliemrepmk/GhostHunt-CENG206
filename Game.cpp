@@ -6,19 +6,12 @@
 #include <QPushButton>
 #include "Ghost.h"
 #include <QLabel>
-<<<<<<< HEAD
 #include <QImage>
-=======
->>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
 Game::Game(){
-    scene = new QGraphicsScene();
+    scene = new QGraphicsScene(this);
     scene ->setSceneRect(0,0,800,600);
     scene ->setBackgroundBrush(Qt::lightGray);
-<<<<<<< HEAD
     setBackgroundBrush(QBrush(QImage(":/images/ground.jpg")));
-=======
-
->>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
 
 
     setScene(scene);
@@ -41,6 +34,7 @@ Game::Game(){
 
     show();
 }
+
 void Game::onButton1Clicked()
 {
 
@@ -52,7 +46,9 @@ void Game::onButton1Clicked()
     inside_game->setSceneRect(0,0,800,600);
     inside_game ->setBackgroundBrush(Qt::white);
     player = new Player();
+    player2 = new Player2();
     inside_game->addItem(player);
+    inside_game->addItem(player2);
     score = new Score();
     inside_game->addItem(score);
     for (int i = 0; i < 10; i++) {
@@ -65,4 +61,14 @@ void Game::onButton2Clicked()
 {
 
     //About
+}
+
+void Game::keyPressEvent(QKeyEvent* event) {
+    // Handle key events
+    if (player) {
+        player->keyPressEvent(event);
+    }
+    if (player2) {
+        player2->keyPressEvent(event);
+    }
 }

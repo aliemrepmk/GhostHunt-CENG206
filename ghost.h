@@ -6,7 +6,8 @@ class Ghost :public QObject ,public QGraphicsRectItem{
     Q_OBJECT
 public:
     Ghost(QGraphicsRectItem *parent = nullptr);
-protected:
+    ~Ghost(); //F
+    bool isVisible;
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 private:

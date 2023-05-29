@@ -13,13 +13,17 @@ SOURCES += \
     Ghost.cpp \
     Player.cpp \
     Score.cpp \
-    main.cpp
+    abstractplayer.cpp \
+    main.cpp \
+    player2.cpp
 
 HEADERS += \
     Game.h \
     Ghost.h \
     Player.h \
-    Score.h
+    Score.h \
+    abstractplayer.h \
+    player2.h
 MOC_HEADERS += \
 Ghost.h \
 Player.h
@@ -29,9 +33,6 @@ FORMS +=
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-<<<<<<< HEAD
 
 RESOURCES += \
     res.qrc
-=======
->>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c

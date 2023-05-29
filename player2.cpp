@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Player2.h"
 #include <QDebug>
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -11,9 +11,9 @@
 #include <QRectF>
 #include <QGraphicsTextItem>
 extern Game *game;
-Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
+Player2 :: Player2():QGraphicsPixmapItem(), AbstractPlayer(){
     setPixmap(QPixmap(":/images/area.png"));
-    setPos(400,550);
+    setPos(400,50);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
     qreal new_ax =0.5;
@@ -23,30 +23,27 @@ Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     setTransform(transform);
 
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Player::update);
+    connect(timer, &QTimer::timeout, this, &Player2::update);
     timer->start(10);
     visionRadius=90.00;
 }
-void Player::keyPressEvent(QKeyEvent * event)
+void Player2::keyPressEvent(QKeyEvent * event)
 {
-    if (event -> key() == Qt::Key_Left && x() >0){
-        setPos(x()-10,y());
-        qDebug() << x();
-    }
-    else if (event -> key() == Qt::Key_Right && x() < scene()->width()){
-        setPos(x()+10,y());
-        qDebug() << x();
-    }
-    else if (event -> key() == Qt::Key_Up && y() > 0){
-        setPos(x(),y()-10);
-        qDebug() << y();
-    }
-    else if (event -> key() == Qt::Key_Down && y() < scene()->height()){
-        setPos(x(),y()+10);
-        qDebug() << y();
+    if (event->key() == Qt::Key_A && x()>0) {
+        setPos(x()-10, y());
+        qDebug() << "Key A pressed";
+    } else if (event->key() == Qt::Key_D && x()<scene()->width()) {
+        setPos(x() + 10, y());
+        qDebug() << "Key D pressed";
+    } else if (event->key() == Qt::Key_W && y()>0 ) {
+        setPos(x(), y() - 10);
+        qDebug() << "Key W pressed";
+    } else if (event->key() == Qt::Key_S && y()<scene()->height()) {
+        setPos(x() , y()+ 10);
+        qDebug() << "Key S pressed";
     }
 }
-void Player::update()
+void Player2::update()
 {
 
     // Get a list of all items colliding with the player
@@ -65,14 +62,15 @@ void Player::update()
                 qDebug() << distance;
                 // Collision with a ghost within the vision radius
                 ghost->isVisible=true;
-            }else{
+            } else{
                 ghost->isVisible=false;
             }
-                if(distance <= 10){
-                    game->score->increase();
-                    scene()->removeItem(ghost);
-                    delete ghost;
-                }
+            if(distance <= 10){
+                game->score->increase();
+                scene()->removeItem(ghost);
+                delete ghost;
             }
         }
     }
+}
+
