@@ -12,7 +12,7 @@
 #include <QGraphicsTextItem>
 extern Game *game;
 Player2 :: Player2():QGraphicsPixmapItem(), AbstractPlayer(){
-    setPixmap(QPixmap(":/images/area.png"));
+    setPixmap(QPixmap(":/images/area2.png"));
     setPos(400,50);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();

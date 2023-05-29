@@ -1,5 +1,6 @@
 #include "Score.h"
-
+#include "Game.h"
+extern Game *game;
 Score::Score(QGraphicsItem *parent) : QGraphicsTextItem(parent) {
     scorePlayer1 = 0;
     scorePlayer2 = 0;

@@ -4,10 +4,15 @@
 #include <QRandomGenerator>
 #include <QGraphicsScene>
 
-Ghost::Ghost(QGraphicsRectItem *parent):QGraphicsRectItem(parent){
+Ghost::Ghost(QGraphicsRectItem *parent):QGraphicsPixmapItem(parent){
     // Set the ghost's initial position and size
+    setPixmap(QPixmap(":/images/Ghost.png"));
     setPos(QRandomGenerator::global()->bounded(0, 500), QRandomGenerator::global()->bounded(0, 500));
-    setRect(-5,-5,20,20);
+    qreal new_ax =0.5;
+    qreal new_ay =0.5;
+    QTransform transform;
+    transform.translate(-pixmap().width() * new_ax, -pixmap().height() * new_ay);
+    setTransform(transform);
     // Create a timer to update the ghost's position every 100 ms
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Ghost::move);
@@ -21,19 +26,12 @@ Ghost::~Ghost(){ //F
     }
 }
 
-QRectF Ghost::boundingRect() const
-{
-    return rect();
-}
-
 void Ghost::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // Set the transparency level
-    if(isVisible){
+    if (isVisible) {
         painter->setOpacity(0.5); // Adjust the value to change the transparency
-
-        painter->setBrush(QColor(255, 255, 0)); // Yellow color with transparency
-        painter->drawRect(rect());
+        painter->drawPixmap(boundingRect().toRect(), pixmap());
     }
 }
 

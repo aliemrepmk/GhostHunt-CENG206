@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QRectF>
 #include <QGraphicsTextItem>
+#include <QMessageBox>
 extern Game *game;
 Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     setPixmap(QPixmap(":/images/area.png"));

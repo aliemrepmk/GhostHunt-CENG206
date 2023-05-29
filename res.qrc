@@ -2,5 +2,7 @@
     <qresource prefix="/images">
         <file>ground.jpg</file>
         <file>area.png</file>
+        <file>area2.png</file>
+        <file>Ghost.png</file>
     </qresource>
 </RCC>
