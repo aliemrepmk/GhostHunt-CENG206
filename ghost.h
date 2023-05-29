@@ -8,9 +8,10 @@ public:
     Ghost(QGraphicsRectItem *parent = nullptr);
     ~Ghost(); //F
     bool isVisible;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;   
 private:
     void move();
+    bool operator==(const Ghost& other) const;
 };
 
 #endif // GHOST_H

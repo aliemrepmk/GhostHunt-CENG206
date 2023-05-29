@@ -48,10 +48,27 @@ void Ghost::move()
     if (scene() && scene()->sceneRect().contains(newPos))
     {
         // Set the new position if it's within the scene
-
+        for (QGraphicsItem* item : scene()->items())
+        {
+            if (Ghost* otherGhost = dynamic_cast<Ghost*>(item))
+            {
+                if (*this == *otherGhost && this != otherGhost) //!
+                {
+                    // Ghosts have the same position, so generate a new random position
+                    move();
+                    return;
+                }
+            }
+        }
+        // Set the new position if it's within the scene
         setPos(newPos);
     } else{
         move();
     }
 
+}
+
+bool Ghost::operator==(const Ghost& other) const {  //operator overloading
+    // Compare the positions of two Ghost objects
+    return (this->pos() == other.pos());
 }

@@ -9,6 +9,8 @@
 #include <QTimer>
 #include "Score.h"
 #include <QKeyEvent>
+#include <QMovie>
+#include <QApplication>
 class Game :public QGraphicsView{
 public:
     Game();

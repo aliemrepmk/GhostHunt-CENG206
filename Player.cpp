@@ -11,6 +11,7 @@
 #include <QRectF>
 #include <QGraphicsTextItem>
 #include <QMessageBox>
+#include <unordered_set>
 extern Game *game;
 Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     setPixmap(QPixmap(":/images/area.png"));
@@ -26,54 +27,88 @@ Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Player::update);
     timer->start(10);
-    visionRadius=90.00;
+    visionRadius=60.00;
 }
 void Player::keyPressEvent(QKeyEvent * event)
 {
     if (event -> key() == Qt::Key_Left && x() >0){
         setPos(x()-10,y());
-        qDebug() << x();
+
     }
     else if (event -> key() == Qt::Key_Right && x() < scene()->width()){
         setPos(x()+10,y());
-        qDebug() << x();
+
     }
     else if (event -> key() == Qt::Key_Up && y() > 0){
         setPos(x(),y()-10);
-        qDebug() << y();
+
     }
     else if (event -> key() == Qt::Key_Down && y() < scene()->height()){
         setPos(x(),y()+10);
-        qDebug() << y();
+
     }
 }
 void Player::update()
 {
+    static qreal rotationAngle = 0.0;
+
+    // Rotate the image without changing the position
+    setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
+    setRotation(rotationAngle);
+
+    // Increment the rotation angle
+    rotationAngle -= 1.0;
+    if (rotationAngle <= -360.0)
+    {
+        rotationAngle = 0.0;
+    }
+
 
     // Get a list of all items colliding with the player
     QList<QGraphicsItem*> collisions = collidingItems();
 
-    // Iterate over the colliding items
-    for (QGraphicsItem *item : collisions) {
-        if (Ghost *ghost = dynamic_cast<Ghost *>(item)) {
-            // Calculate the distance between the player and the ghost
+    static std::unordered_set<Ghost*> visibleGhosts;
+
+    for (auto it = visibleGhosts.begin(); it != visibleGhosts.end(); )
+    {
+        Ghost* ghost = *it;
+        qreal dx = ghost->x() - x();
+        qreal dy = ghost->y() - y();
+        qreal distance = std::sqrt(dx * dx + dy * dy);
+
+        if (distance > visionRadius)
+        {
+            ghost->isVisible = false;
+            it = visibleGhosts.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+    for (QGraphicsItem* item : collisions)
+    {
+        if (Ghost* ghost = dynamic_cast<Ghost*>(item))
+        {
             qreal dx = ghost->x() - x();
             qreal dy = ghost->y() - y();
             qreal distance = std::sqrt(dx * dx + dy * dy);
 
-            // Check if the ghost is within the vision radius
-            if (distance <= visionRadius) {
-                qDebug() << distance;
-                // Collision with a ghost within the vision radius
-                ghost->isVisible=true;
-            }else{
-                ghost->isVisible=false;
+            if (distance <= visionRadius)
+            {
+                ghost->isVisible = true;
+
+                // Add the visible ghost to the set
+                visibleGhosts.insert(ghost);
             }
-                if(distance <= 10){
-                    game->score->increase(1);
-                    scene()->removeItem(ghost);
-                    delete ghost;
-                }
+
+            if (distance <= 10)
+            {
+                game->score->increase(1);
+                scene()->removeItem(ghost);
+                delete ghost;
+                visibleGhosts.erase(ghost);
             }
         }
     }
+}

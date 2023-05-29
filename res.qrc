@@ -1,8 +1,11 @@
 <RCC>
     <qresource prefix="/images">
         <file>ground.jpg</file>
+        <file>initialGround.gif</file>
         <file>area.png</file>
+        <file>ground2.png</file>
         <file>area2.png</file>
         <file>Ghost.png</file>
+        <file>icon.png</file>
     </qresource>
 </RCC>
