@@ -47,6 +47,19 @@ void Player2::keyPressEvent(QKeyEvent * event)
 void Player2::update()
 {
 
+    static qreal rotationAngle = 0.0;
+
+    // Rotate the image without changing the position
+    setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
+    setRotation(rotationAngle);
+
+    // Increment the rotation angle
+    rotationAngle += 1.0;
+    if (rotationAngle >= 360.0)
+    {
+        rotationAngle = 0.0;
+    }
+
     // Get a list of all items colliding with the player
     QList<QGraphicsItem*> collisions = collidingItems();
 

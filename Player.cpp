@@ -27,7 +27,7 @@ Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Player::update);
     timer->start(10);
-    visionRadius=75.00;
+    visionRadius=60.00;
 }
 void Player::keyPressEvent(QKeyEvent * event)
 {
@@ -50,6 +50,19 @@ void Player::keyPressEvent(QKeyEvent * event)
 }
 void Player::update()
 {
+    static qreal rotationAngle = 0.0;
+
+    // Rotate the image without changing the position
+    setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
+    setRotation(rotationAngle);
+
+    // Increment the rotation angle
+    rotationAngle -= 1.0;
+    if (rotationAngle <= -360.0)
+    {
+        rotationAngle = 0.0;
+    }
+
 
     // Get a list of all items colliding with the player
     QList<QGraphicsItem*> collisions = collidingItems();
@@ -98,6 +111,4 @@ void Player::update()
             }
         }
     }
-
-
 }
