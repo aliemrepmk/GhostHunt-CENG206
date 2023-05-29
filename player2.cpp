@@ -66,7 +66,7 @@ void Player2::update()
                 ghost->isVisible=false;
             }
             if(distance <= 10){
-                game->score->increase();
+                game->score->increase(2);
                 scene()->removeItem(ghost);
                 delete ghost;
             }
