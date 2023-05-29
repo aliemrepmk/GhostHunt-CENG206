@@ -11,10 +11,7 @@
 #include <QRectF>
 #include <QGraphicsTextItem>
 #include <QMessageBox>
-<<<<<<< HEAD
 #include <unordered_set>
-=======
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e
 extern Game *game;
 Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     setPixmap(QPixmap(":/images/area.png"));
@@ -48,11 +45,7 @@ void Player::keyPressEvent(QKeyEvent * event)
     }
     else if (event -> key() == Qt::Key_Down && y() < scene()->height()){
         setPos(x(),y()+10);
-<<<<<<< HEAD
 
-=======
-        qDebug() << y();
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e
     }
 }
 void Player::update()
@@ -61,7 +54,6 @@ void Player::update()
     // Get a list of all items colliding with the player
     QList<QGraphicsItem*> collisions = collidingItems();
 
-<<<<<<< HEAD
     static std::unordered_set<Ghost*> visibleGhosts;
 
     for (auto it = visibleGhosts.begin(); it != visibleGhosts.end(); )
@@ -85,17 +77,10 @@ void Player::update()
     {
         if (Ghost* ghost = dynamic_cast<Ghost*>(item))
         {
-=======
-    // Iterate over the colliding items
-    for (QGraphicsItem *item : collisions) {
-        if (Ghost *ghost = dynamic_cast<Ghost *>(item)) {
-            // Calculate the distance between the player and the ghost
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e
             qreal dx = ghost->x() - x();
             qreal dy = ghost->y() - y();
             qreal distance = std::sqrt(dx * dx + dy * dy);
 
-<<<<<<< HEAD
             if (distance <= visionRadius)
             {
                 ghost->isVisible = true;
@@ -106,7 +91,7 @@ void Player::update()
 
             if (distance <= 10)
             {
-                game->score->increase(2);
+                game->score->increase(1);
                 scene()->removeItem(ghost);
                 delete ghost;
                 visibleGhosts.erase(ghost);
@@ -116,21 +101,3 @@ void Player::update()
 
 
 }
-=======
-            // Check if the ghost is within the vision radius
-            if (distance <= visionRadius) {
-                qDebug() << distance;
-                // Collision with a ghost within the vision radius
-                ghost->isVisible=true;
-            }else{
-                ghost->isVisible=false;
-            }
-                if(distance <= 10){
-                    game->score->increase(1);
-                    scene()->removeItem(ghost);
-                    delete ghost;
-                }
-            }
-        }
-    }
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e

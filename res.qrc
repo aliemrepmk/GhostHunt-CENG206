@@ -4,9 +4,6 @@
         <file>area.png</file>
         <file>area2.png</file>
         <file>Ghost.png</file>
-<<<<<<< HEAD
         <file>icon.png</file>
-=======
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e
     </qresource>
 </RCC>

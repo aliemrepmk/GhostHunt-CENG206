@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 10.0.1, 2023-05-18T11:23:27. -->
-=======
-<!-- Written by QtCreator 10.0.1, 2023-05-14T19:38:44. -->
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e
+<!-- Written by QtCreator 10.0.1, 2023-05-18T23:38:53. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -240,14 +236,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">test22</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/merta/Downloads/test2/test2/test2.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/merta/Downloads/test2/test2/test2.pro</value>
-=======
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/eseym/Desktop/Course Materials/test2/test2.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/eseym/Desktop/Course Materials/test2/test2.pro</value>
->>>>>>> 9f8895c1860b7d285b4dada89ad78fa131118c9e
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/eseym/Desktop/test2/test2/test2.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/eseym/Desktop/test2/test2/test2.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

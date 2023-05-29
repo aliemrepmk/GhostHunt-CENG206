@@ -42,15 +42,15 @@ void Game::onButton1Clicked()
 
 
     //Start the Game
-    inside_game = new QGraphicsScene();
+    inside_game = new QGraphicsScene();   //Explicit heap dynamic variable
     setScene(inside_game);
     inside_game->setSceneRect(0,0,800,600);
     inside_game ->setBackgroundBrush(Qt::white);
-    player = new Player();
-    player2 = new Player2();
+    player = new Player();    //Explicit heap dynamic variable
+    player2 = new Player2();  //Explicit heap dynamic variable
     inside_game->addItem(player);
     inside_game->addItem(player2);
-    score = new Score();
+    score = new Score();  //Explicit heap dynamic variable
     inside_game->addItem(score);
     for (int i = 0; i < 11; i++) {//11 ghost
         Ghost* ghost = new Ghost();
