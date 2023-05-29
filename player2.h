@@ -1,18 +1,18 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYER2_H
+#define PLAYER2_H
 #include "AbstractPlayer.h"
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QGraphicsTextItem>
 
-    class Player : public AbstractPlayer,public QGraphicsPixmapItem
+class Player2: public AbstractPlayer,public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Player();
+    Player2();
     void keyPressEvent(QKeyEvent* event) override;
     void update();
     int visionRadius;
 };
 
-#endif // PLAYER_H
+#endif // PLAYER2_H

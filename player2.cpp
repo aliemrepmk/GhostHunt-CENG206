@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Player2.h"
 #include <QDebug>
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -10,12 +10,11 @@
 #include <QDebug>
 #include <QRectF>
 #include <QGraphicsTextItem>
-#include <QMessageBox>
 #include <unordered_set>
 extern Game *game;
-Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
-    setPixmap(QPixmap(":/images/area.png"));
-    setPos(400,550);
+Player2 :: Player2():QGraphicsPixmapItem(), AbstractPlayer(){
+    setPixmap(QPixmap(":/images/area2.png"));
+    setPos(400,50);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
     qreal new_ax =0.5;
@@ -25,30 +24,27 @@ Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     setTransform(transform);
 
     QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &Player::update);
+    connect(timer, &QTimer::timeout, this, &Player2::update);
     timer->start(10);
     visionRadius=75.00;
 }
-void Player::keyPressEvent(QKeyEvent * event)
+void Player2::keyPressEvent(QKeyEvent * event)
 {
-    if (event -> key() == Qt::Key_Left && x() >0){
-        setPos(x()-10,y());
+    if (event->key() == Qt::Key_A && x()>0) {
+        setPos(x()-10, y());
 
-    }
-    else if (event -> key() == Qt::Key_Right && x() < scene()->width()){
-        setPos(x()+10,y());
+    } else if (event->key() == Qt::Key_D && x()<scene()->width()) {
+        setPos(x() + 10, y());
 
-    }
-    else if (event -> key() == Qt::Key_Up && y() > 0){
-        setPos(x(),y()-10);
+    } else if (event->key() == Qt::Key_W && y()>0 ) {
+        setPos(x(), y() - 10);
 
-    }
-    else if (event -> key() == Qt::Key_Down && y() < scene()->height()){
-        setPos(x(),y()+10);
-
+    } else if (event->key() == Qt::Key_S && y()<scene()->height()) {
+        setPos(x() , y()+ 10);
+        ;
     }
 }
-void Player::update()
+void Player2::update()
 {
 
     // Get a list of all items colliding with the player

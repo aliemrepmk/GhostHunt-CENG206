@@ -1,13 +1,19 @@
 #ifndef SCORE_H
 #define SCORE_H
+
 #include <QGraphicsTextItem>
-class Score : public QGraphicsTextItem{
+#include <QFont>
+
+class Score : public QGraphicsTextItem {
 public:
-    Score(QGraphicsItem *parent = 0);
-    void increase();
-    int getScore();
+    Score(QGraphicsItem *parent = nullptr);
+
+    void increase(int player);
+    int getScore(int player);
+
 private:
-    int score;
+    int scorePlayer1;
+    int scorePlayer2;
 };
 
 #endif // SCORE_H

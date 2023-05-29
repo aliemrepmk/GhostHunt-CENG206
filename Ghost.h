@@ -1,13 +1,13 @@
 #ifndef GHOST_H
 #define GHOST_H
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
-class Ghost :public QObject ,public QGraphicsRectItem{
+class Ghost :public QObject ,public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Ghost(QGraphicsRectItem *parent = nullptr);
-protected:
-    QRectF boundingRect() const override;
+    ~Ghost(); //F
+    bool isVisible;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 private:
     void move();
