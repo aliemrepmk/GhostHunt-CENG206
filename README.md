@@ -12,10 +12,13 @@ serves as an excellent demonstration of C++ programming skills, GUI implementati
 game design principles.
 
 Contributors
+
 Ali Emre Pamuk - 21050111021
+
 Eren Alyörük - 21050111077
+
 Faruk Kaplan - 21050111026
+
 Mert Altekin - 21050111065
+
 Şeyma Sarcan - 19050111041
-
-
