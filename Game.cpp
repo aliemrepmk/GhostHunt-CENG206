@@ -6,12 +6,19 @@
 #include <QPushButton>
 #include "Ghost.h"
 #include <QLabel>
+<<<<<<< HEAD
 #include <QImage>
+=======
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
 Game::Game(){
     scene = new QGraphicsScene();
     scene ->setSceneRect(0,0,800,600);
     scene ->setBackgroundBrush(Qt::lightGray);
+<<<<<<< HEAD
     setBackgroundBrush(QBrush(QImage(":/images/ground.jpg")));
+=======
+
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
 
 
     setScene(scene);

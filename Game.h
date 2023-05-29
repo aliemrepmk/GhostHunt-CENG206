@@ -6,7 +6,10 @@
 #include <QGraphicsScene>
 #include <Player.h>
 #include <QTimer>
+<<<<<<< HEAD
 #include "Score.h"
+=======
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
 class Game :public QGraphicsView{
 public:
     Game();

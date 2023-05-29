@@ -4,7 +4,11 @@ Score::Score(QGraphicsItem *parent):QGraphicsTextItem(parent)
 {
     score = 0;
     setPlainText(QString("Score: ")+ QString::number(score));
+<<<<<<< HEAD
     setDefaultTextColor(Qt::red);
+=======
+    setDefaultTextColor(Qt::blue);
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
     setFont(QFont("times",16));
 }
 

@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QLabel>
 #include <QDebug>
+<<<<<<< HEAD
 #include <QRectF>
 #include <QGraphicsTextItem>
 extern Game *game;
@@ -44,6 +45,32 @@ void Player::keyPressEvent(QKeyEvent * event)
     else if (event -> key() == Qt::Key_Down && y() + pixmap().height() -100 < scene()->height()){
         setPos(x(),y()+10);
         qDebug() << y();
+=======
+#include <QGraphicsTextItem>
+extern Game *game;
+Player :: Player(){
+    setRect(0,0,100,100);
+    setPos(400,500);
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
+    QTimer *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &Player::update);
+    timer->start(100);
+}
+void Player::keyPressEvent(QKeyEvent * event)
+{
+    if (event -> key() == Qt::Key_Left && x()>0){
+        setPos(x()-10,y());
+    }
+    else if (event -> key() == Qt::Key_Right && x() + rect().width() < scene()->width()){
+        setPos(x()+10,y());
+    }
+    else if (event -> key() == Qt::Key_Up && y() > 0){
+        setPos(x(),y()-10);
+    }
+    else if (event -> key() == Qt::Key_Down && y() + rect().height() < scene()->height()){
+        setPos(x(),y()+10);
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
     }
 }
 void Player::update()
@@ -53,6 +80,7 @@ void Player::update()
     QList<QGraphicsItem*> collisions = collidingItems();
 
     // Iterate over the colliding items
+<<<<<<< HEAD
     for (QGraphicsItem *item : collisions) {
         if (Ghost *ghost = dynamic_cast<Ghost *>(item)) {
             // Calculate the distance between the player and the ghost
@@ -74,3 +102,18 @@ void Player::update()
             }
         }
     }
+=======
+    for (QGraphicsItem* item : collisions) {
+        if (dynamic_cast<Ghost*>(item)) {
+            // Collision with a ghost detected
+            Ghost* ghost = static_cast<Ghost*>(item);
+
+            // Increment the player's score
+            game->score->increase();
+            // Remove the ghost from the scene
+            scene()->removeItem(ghost);
+            delete ghost;
+        }
+    }
+}
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c

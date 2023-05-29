@@ -29,6 +29,9 @@ FORMS +=
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+<<<<<<< HEAD
 
 RESOURCES += \
     res.qrc
+=======
+>>>>>>> bfc35f0ee502c796ce881f165c09b7ca08bac18c
