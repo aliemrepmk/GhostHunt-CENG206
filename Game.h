@@ -24,6 +24,7 @@ public:
 public slots:
     void onButton1Clicked();
     void onButton2Clicked();
+    void onButton3Clicked();
     void returnToMainMenu();
 
 protected:

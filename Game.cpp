@@ -38,7 +38,7 @@ Game::Game(){
 
     button1->setStyleSheet("background-color: brown; color: white;");
     QGraphicsProxyWidget* proxy1 = main_scene->addWidget(button1);
-    proxy1->setPos(50, 150);
+    proxy1->setPos(50, 200);
     connect(button1, &QPushButton::clicked, this, &Game::onButton1Clicked);
 
     //About
@@ -46,8 +46,17 @@ Game::Game(){
     button2->setFixedSize(150,50);
     button2->setStyleSheet("background-color: brown; color: white;");
     QGraphicsProxyWidget* proxy2 = main_scene->addWidget(button2);
-    proxy2->setPos(50, 300);
+    proxy2->setPos(50, 350);
     connect(button2, &QPushButton::clicked, this, &Game::onButton2Clicked);
+
+    //HowToPlay
+    QPushButton* button3 = new QPushButton("How to Play");
+    button3->setFixedSize(150,50);
+    button3->setStyleSheet("background-color: brown; color: white;");
+    QGraphicsProxyWidget* proxy3 = main_scene->addWidget(button3);
+    proxy3->setPos(50, 275);
+    connect(button3, &QPushButton::clicked, this, &Game::onButton3Clicked);
+
     setWindowTitle("Epic Ghost Hunt");
     setWindowIcon(QIcon(":/images/icon.png"));
     show();
@@ -71,7 +80,6 @@ void Game::onButton1Clicked()
         Ghost* ghost = new Ghost();
         inside_game->addItem(ghost);
     }
-
 }
 void Game::onButton2Clicked()
 {
@@ -84,28 +92,75 @@ void Game::onButton2Clicked()
 
     // Create labels
     QGraphicsTextItem* label1 = new QGraphicsTextItem("About This Game");
-    label1->setPos(300, 50);
-    label1->setFont(QFont("Arial", 24));
+    label1->setPos(220, 25);
+    label1->setFont(QFont("Arial", 32));
+    label1->setDefaultTextColor(Qt::white);
     about_scene->addItem(label1);
 
-    QGraphicsTextItem* label2 = new QGraphicsTextItem("-------------------------------------------");
-    label2->setPos(275, 100);
-    label2->setFont(QFont("Arial", 16));
+    QGraphicsTextItem* label2 = new QGraphicsTextItem("------------------------");
+    label2->setPos(220, 50);
+    label2->setFont(QFont("Arial", 32));
+    label2->setDefaultTextColor(Qt::white);
     about_scene->addItem(label2);
 
-    QGraphicsTextItem* label3 = new QGraphicsTextItem("Contributors:                    How To Play:");
-    label3->setPos(175, 150);
-    label3->setFont(QFont("Arial", 20));
-    about_scene->addItem(label3);
-
-    QGraphicsTextItem* label4 = new QGraphicsTextItem("->Ali Emre PAMUK           ->Press 'Start The Game'.\n"
-                                                      "->Eren ALYÖRÜK             ->First player plays with 'WASD',\n"
-                                                      "->Faruk KAPLAN                 second players play with d-pad."
-                                                      "\n->Mert ALTEKİN                ->The first player who eat 6 ghosts"
-                                                      "\n->Şeyma SARCAN               wins.");
-    label4->setPos(125, 200);
-    label4->setFont(QFont("Arial", 18));
+    QGraphicsTextItem* label4 = new QGraphicsTextItem("Contributors :");
+    label4->setPos(280, 115);
+    label4->setFont(QFont("Arial", 26));
+    label4->setDefaultTextColor(Qt::white);
     about_scene->addItem(label4);
+
+    QGraphicsTextItem* label5 = new QGraphicsTextItem("-> Ali Emre PAMUK\n\n"
+                                                      "-> Eren ALYÖRÜK\n\n"
+                                                      "-> Faruk KAPLAN\n\n"
+                                                      "-> Mert ALTEKİN\n\n"
+                                                      "-> Şeyma SARCAN");
+    label5->setPos(250, 175);
+    label5->setFont(QFont("Arial", 22));
+    label5->setDefaultTextColor(Qt::white);
+    about_scene->addItem(label5);
+
+    // Create the back button
+    QPushButton* backButton = new QPushButton("Back");
+    backButton->setFixedSize(100, 30);
+    backButton->setStyleSheet("background-color: black; color: white;");
+    QGraphicsProxyWidget* backButtonProxy = about_scene->addWidget(backButton);
+    backButtonProxy->setPos(50, 500);
+    connect(backButton, &QPushButton::clicked, this, &Game::returnToMainMenu);
+
+    show();
+}
+
+void Game::onButton3Clicked()
+{
+    // Create the about_scene
+    setBackgroundBrush(QBrush(QImage(":/images/ground3.png")));
+    about_scene = new QGraphicsScene();
+    setScene(about_scene);
+    about_scene->setSceneRect(0, 0, 800, 600);
+    about_scene->setBackgroundBrush(Qt::white);
+
+    // Create labels
+    QGraphicsTextItem* label1 = new QGraphicsTextItem("How To Play");
+    label1->setPos(260, 25);
+    label1->setFont(QFont("Arial", 32));
+    label1->setDefaultTextColor(Qt::white);
+    about_scene->addItem(label1);
+
+    QGraphicsTextItem* label2 = new QGraphicsTextItem("-----------------");
+    label2->setPos(260, 50);
+    label2->setFont(QFont("Arial", 32));
+    label2->setDefaultTextColor(Qt::white);
+    about_scene->addItem(label2);
+
+    QGraphicsTextItem* label5 = new QGraphicsTextItem("-> Press 'Start The Game'.\n\n"
+                                                      "-> First player plays with 'WASD'.\n\n"
+                                                      "-> Second player plays with d-pad.\n\n"
+                                                      "-> First player who eats 6 ghosts\n\n              WINS THE GAME."
+                                                      );
+    label5->setPos(175, 200);
+    label5->setFont(QFont("Arial", 20));
+    label5->setDefaultTextColor(Qt::white);
+    about_scene->addItem(label5);
 
     // Create the back button
     QPushButton* backButton = new QPushButton("Back");

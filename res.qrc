@@ -7,5 +7,6 @@
         <file>area2.png</file>
         <file>Ghost.png</file>
         <file>icon.png</file>
+        <file>ground3.png</file>
     </qresource>
 </RCC>

@@ -26,11 +26,7 @@ Player2 :: Player2():QGraphicsPixmapItem(), AbstractPlayer(){
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Player2::update);
     timer->start(10);
-<<<<<<< HEAD
     visionRadius=60.00;
-=======
-    visionRadius=75.00;
->>>>>>> 009da7550312180bd87acaabcab82a3cff1c27ac
 }
 void Player2::keyPressEvent(QKeyEvent * event)
 {
