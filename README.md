@@ -2,6 +2,7 @@
 Group 21
 
 *** We finished most of the project before the announcement about using Github.
+*** We used QT for the GUI design.
 
 The implementation of this hide-and-seek game using C++ with a GUI provides an
 engaging and entertaining gaming experience. By incorporating limited player vision, random
