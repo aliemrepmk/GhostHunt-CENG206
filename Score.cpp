@@ -44,13 +44,7 @@ void Score::increase(int player, int points) { //??
     setHtml(htmlText);
 }
 
-int Score::getScore(int player) {  //??
-    if (player < 1 || player > totalPlayers) {
-        throw std::out_of_range("Invalid player index");
-    }
 
-    return scores[player - 1];
-}
 
 
 
