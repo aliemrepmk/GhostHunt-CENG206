@@ -14,7 +14,11 @@ Score::Score(int numPlayers, QGraphicsItem *parent) : QGraphicsTextItem(parent),
     QString htmlText;
     for (int i = 0; i < totalPlayers; i++) {
         QString playerText = "Player " + QString::number(i + 1) + ": " + QString::number(scores[i]);
-        htmlText += "<font color='yellow'>" + playerText + "</font><br>";
+        if(i ==0 ){
+            htmlText += "<font color='blue'>" + playerText + "</font><br>";
+        } else{
+        htmlText += "<font color='orange'>" + playerText + "</font><br>";
+        }
     }
     setHtml(htmlText);
     setFont(QFont("times", 16));
@@ -39,7 +43,11 @@ void Score::increase(int player, int points) { //??
     QString htmlText;
     for (int i = 0; i < totalPlayers; i++) {
         QString playerText = "Player " + QString::number(i + 1) + ": " + QString::number(scores[i]);
-        htmlText += "<font color='yellow'>" + playerText + "</font><br>";
+        if(i ==0 ){
+        htmlText += "<font color='blue'>" + playerText + "</font><br>";
+        } else{
+        htmlText += "<font color='orange'>" + playerText + "</font><br>";
+        }
     }
     setHtml(htmlText);
 }

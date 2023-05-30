@@ -153,8 +153,8 @@ void Game::onButton3Clicked()
     about_scene->addItem(label2);
 
     QGraphicsTextItem* label5 = new QGraphicsTextItem("-> Press 'Start The Game'.\n\n"
-                                                      "-> First player plays with 'WASD'.\n\n"
-                                                      "-> Second player plays with d-pad.\n\n"
+                                                      "-> First player plays with d-pad.\n\n"
+                                                      "-> Second player plays with 'WASD'.\n\n"
                                                       "-> First player who eats 6 ghosts\n\n              WINS THE GAME."
                                                       );
     label5->setPos(175, 200);
