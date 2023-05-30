@@ -1,25 +1,28 @@
 #include "Player.h"
-#include <QDebug>
-#include <QKeyEvent>
-#include <QGraphicsScene>
-#include <QList>
 #include "Game.h"
-#include "ghost.h"
-#include <QTimer>
-#include <QLabel>
+#include "Ghost.h"
+
 #include <QDebug>
-#include <QRectF>
+#include <QGraphicsScene>
 #include <QGraphicsTextItem>
+#include <QKeyEvent>
+#include <QLabel>
+#include <QList>
 #include <QMessageBox>
+#include <QRectF>
+#include <QTimer>
+
 #include <unordered_set>
+
 extern Game *game;
-Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
+Player ::Player() : QGraphicsPixmapItem(), AbstractPlayer()
+{
     setPixmap(QPixmap(":/images/area.png"));
-    setPos(400,550);
+    setPos(400, 550);
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
-    qreal new_ax =0.5;
-    qreal new_ay =0.5;
+    qreal new_ax = 0.5;
+    qreal new_ay = 0.5;
     QTransform transform;
     transform.translate(-pixmap().width() * new_ax, -pixmap().height() * new_ay);
     setTransform(transform);
@@ -27,25 +30,25 @@ Player :: Player():QGraphicsPixmapItem(), AbstractPlayer(){
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Player::update);
     timer->start(10);
-    visionRadius=60.00;
+    visionRadius = 60.00;
 }
-void Player::keyPressEvent(QKeyEvent * event)
+void Player::keyPressEvent(QKeyEvent *event)
 {
-    if (event -> key() == Qt::Key_Left && x() >0){
-        setPos(x()-10,y());
-
+    if (event->key() == Qt::Key_Left && x() > 0)
+    {
+        setPos(x() - 10, y());
     }
-    else if (event -> key() == Qt::Key_Right && x() < scene()->width()){
-        setPos(x()+10,y());
-
+    else if (event->key() == Qt::Key_Right && x() < scene()->width())
+    {
+        setPos(x() + 10, y());
     }
-    else if (event -> key() == Qt::Key_Up && y() > 0){
-        setPos(x(),y()-10);
-
+    else if (event->key() == Qt::Key_Up && y() > 0)
+    {
+        setPos(x(), y() - 10);
     }
-    else if (event -> key() == Qt::Key_Down && y() < scene()->height()){
-        setPos(x(),y()+10);
-
+    else if (event->key() == Qt::Key_Down && y() < scene()->height())
+    {
+        setPos(x(), y() + 10);
     }
 }
 void Player::update()
@@ -63,15 +66,14 @@ void Player::update()
         rotationAngle = 0.0;
     }
 
-
     // Get a list of all items colliding with the player
-    QList<QGraphicsItem*> collisions = collidingItems();
+    QList<QGraphicsItem *> collisions = collidingItems();
 
-    static std::unordered_set<Ghost*> visibleGhosts;
+    static std::unordered_set<Ghost *> visibleGhosts;
 
-    for (auto it = visibleGhosts.begin(); it != visibleGhosts.end(); )
+    for (auto it = visibleGhosts.begin(); it != visibleGhosts.end();)
     {
-        Ghost* ghost = *it;
+        Ghost *ghost = *it;
         qreal dx = ghost->x() - x();
         qreal dy = ghost->y() - y();
         qreal distance = std::sqrt(dx * dx + dy * dy);
@@ -86,9 +88,9 @@ void Player::update()
             ++it;
         }
     }
-    for (QGraphicsItem* item : collisions)
+    for (QGraphicsItem *item : collisions)
     {
-        if (Ghost* ghost = dynamic_cast<Ghost*>(item))
+        if (Ghost *ghost = dynamic_cast<Ghost *>(item))
         {
             qreal dx = ghost->x() - x();
             qreal dy = ghost->y() - y();

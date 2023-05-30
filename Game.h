@@ -1,18 +1,21 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <QGraphicsView>
-#include <QWidget>
-#include <QGraphicsScene>
-#include <Player.h>
-#include <player2.h>
-#include <QTimer>
+#include "Player.h"
+#include "Player2.h"
 #include "Score.h"
+
+#include <QApplication>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QKeyEvent>
 #include <QMovie>
-#include <QApplication>
-class Game :public QGraphicsView{
-public:
+#include <QTimer>
+#include <QWidget>
+
+class Game : public QGraphicsView
+{
+  public:
     Game();
     QGraphicsScene *main_scene;
     QGraphicsScene *inside_game;
@@ -21,13 +24,13 @@ public:
     Score *score;
     void resetGame();
     QGraphicsScene *about_scene;
-public slots:
+  public slots:
     void onButton1Clicked();
     void onButton2Clicked();
     void onButton3Clicked();
     void returnToMainMenu();
 
-protected:
+  protected:
     void keyPressEvent(QKeyEvent *event) override;
 };
 

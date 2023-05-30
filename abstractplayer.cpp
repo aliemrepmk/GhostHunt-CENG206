@@ -1,6 +1,5 @@
-#include "abstractplayer.h"
+#include "AbstractPlayer.h"
 
 AbstractPlayer::AbstractPlayer()
 {
-
 }

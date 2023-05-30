@@ -1,15 +1,17 @@
-#include "ghost.h"
-#include <QTimer>
+#include "Ghost.h"
+
+#include <QGraphicsScene>
 #include <QPainter>
 #include <QRandomGenerator>
-#include <QGraphicsScene>
+#include <QTimer>
 
-Ghost::Ghost(QGraphicsRectItem *parent):QGraphicsPixmapItem(parent){
+Ghost::Ghost(QGraphicsRectItem *parent) : QGraphicsPixmapItem(parent)
+{
     // Set the ghost's initial position and size
     setPixmap(QPixmap(":/images/Ghost.png"));
     setPos(QRandomGenerator::global()->bounded(0, 500), QRandomGenerator::global()->bounded(0, 500));
-    qreal new_ax =0.5;
-    qreal new_ay =0.5;
+    qreal new_ax = 0.5;
+    qreal new_ay = 0.5;
     QTransform transform;
     transform.translate(-pixmap().width() * new_ax, -pixmap().height() * new_ay);
     setTransform(transform);
@@ -17,11 +19,13 @@ Ghost::Ghost(QGraphicsRectItem *parent):QGraphicsPixmapItem(parent){
     QTimer *timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Ghost::move);
     timer->start(100);
-    isVisible=false;
+    isVisible = false;
 }
 
-Ghost::~Ghost(){ //F
-    if (scene() != nullptr) {
+Ghost::~Ghost()
+{ // F
+    if (scene() != nullptr)
+    {
         scene()->removeItem(this);
     }
 }
@@ -29,7 +33,8 @@ Ghost::~Ghost(){ //F
 void Ghost::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     // Set the transparency level
-    if (isVisible) {
+    if (isVisible)
+    {
         painter->setOpacity(0.5); // Adjust the value to change the transparency
         painter->drawPixmap(boundingRect().toRect(), pixmap());
     }
@@ -48,9 +53,9 @@ void Ghost::move()
     if (scene() && scene()->sceneRect().contains(newPos))
     {
         // Set the new position if it's within the scene
-        for (QGraphicsItem* item : scene()->items())
+        for (QGraphicsItem *item : scene()->items())
         {
-            if (Ghost* otherGhost = dynamic_cast<Ghost*>(item))
+            if (Ghost *otherGhost = dynamic_cast<Ghost *>(item))
             {
                 if (*this == *otherGhost && this != otherGhost) //!
                 {
@@ -62,13 +67,15 @@ void Ghost::move()
         }
         // Set the new position if it's within the scene
         setPos(newPos);
-    } else{
+    }
+    else
+    {
         move();
     }
-
 }
 
-bool Ghost::operator==(const Ghost& other) const {  //operator overloading
+bool Ghost::operator==(const Ghost &other) const
+{ // operator overloading
     // Compare the positions of two Ghost objects
     return (this->pos() == other.pos());
 }
