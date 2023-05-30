@@ -13,20 +13,20 @@ SOURCES += \
     Ghost.cpp \
     Player.cpp \
     Score.cpp \
-    abstractplayer.cpp \
-    main.cpp \
-    player2.cpp
+    AbstractPlayer.cpp \
+    Main.cpp \
+    Player2.cpp
 
 HEADERS += \
     Game.h \
     Ghost.h \
     Player.h \
     Score.h \
-    abstractplayer.h \
-    player2.h
-MOC_HEADERS += \
-Ghost.h \
-Player.h
+    AbstractPlayer.h \
+    Player2.h \
+    Ghost.h \
+    Player.h
+
 FORMS +=
 
 # Default rules for deployment.
