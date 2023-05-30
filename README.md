@@ -1,9 +1,6 @@
-# CENG206-PROJECT-2
-Group 21
+# Epic Ghost Hunt
 
-*** We finished most of the project before the announcement about using Github.
-
-*** We used QT for the GUI design.
+## Group 21
 
 The implementation of this hide-and-seek game using C++ with a GUI provides an
 engaging and entertaining gaming experience. By incorporating limited player vision, random
@@ -13,14 +10,21 @@ visually appealing and intuitive for players. The development of this hide-and-s
 serves as an excellent demonstration of C++ programming skills, GUI implementation, and
 game design principles.
 
-Contributors
+### Note
 
-Ali Emre Pamuk - 21050111021
+- We finished most of the project before the announcement about using Github.
+- We used QT for the GUI design.
 
-Eren Alyörük - 21050111077
+### Images
 
-Faruk Kaplan - 21050111026
+| Main Menu | In Game | About | How to Play |
+|-----------|--------|-------|-------------|
+|![Main Menu](./assets/main_menu.png)|![In Game](./assets/ingame.png)|![About](./assets/about.png)|![How to Play](./assets/howtoplay.png)|
 
-Mert Altekin - 21050111065
+### Contributors
 
-Şeyma Sarcan - 19050111041
+- Ali Emre Pamuk - 21050111021
+- Eren Alyörük - 21050111077
+- Faruk Kaplan - 21050111026
+- Mert Altekin - 21050111065
+- Şeyma Sarcan - 19050111041
